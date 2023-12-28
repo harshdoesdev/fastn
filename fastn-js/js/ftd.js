@@ -13,6 +13,7 @@ const ftd = (function () {
 
     exports.riveNodes = riveNodes;
 
+    
     console.log('this is a test');
 
     exports.is_empty = (value) => {
