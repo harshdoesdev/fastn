@@ -13,7 +13,7 @@ const ftd = (function () {
 
     exports.riveNodes = riveNodes;
 
-    console.log('This is a test IGNORE');
+    console.log('This is a test');
 
     exports.is_empty = (value) => {
         value = fastn_utils.getFlattenStaticValue(value);
