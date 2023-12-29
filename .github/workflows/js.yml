@@ -14,10 +14,8 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
         with:
-          working_directory: fastn-js/js
-          prettier_options: --write **/*.{js,md}
+          prettier_options: --write /home/runner/work/fastn/fastn/fastn-js/js/**/*.js
           only_changed: True
