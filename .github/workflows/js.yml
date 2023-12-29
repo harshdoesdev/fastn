@@ -17,6 +17,5 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
         with:
-          working_directory: fastn-js/
-          prettier_options: --write **/*.{js,md}
+          prettier_options: --write /home/runner/work/repo_name/repo_name/working_directory/**/*.js
           only_changed: True
