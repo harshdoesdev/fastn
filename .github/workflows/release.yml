@@ -43,7 +43,7 @@ jobs:
       - name: Install NSIS
         run: sudo apt-get install --no-install-recommends -y nsis nsis-doc nsis-pluginapi
       - name: Create Installer
-        run: makensis -V3 -DCURRENT_WD=${{ github.workspace }} -DVERSION=${{ github.event.inputs.releaseTag }}
+        run: makensis -V3 -DCURRENT_WD=${{ github.workspace }} -DVERSION=${{ github.event.inputs.releaseTag }} install.nsi
       - uses: actions/upload-artifact@v4
         with:
           name: windows_x64_installer.exe
