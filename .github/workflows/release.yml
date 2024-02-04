@@ -45,8 +45,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y nsis nsis-doc nsis-pluginapi unzip
           wget https://github.com/GsNSIS/EnVar/releases/download/v0.3.1/EnVar-Plugin.zip
-          unzip EnVar-Plugin.zip
-          sudo mv EnVar.* /usr/share/nsis/Plugins/
+          unzip EnVar-Plugin.zip -d EnVar-Plugin
+          sudo mv EnVar-Plugin/* /usr/share/nsis/Plugins/
       - name: Create Installer
         run: makensis -V3 -DCURRENT_WD=${{ github.workspace }} -DVERSION=${{ github.event.inputs.releaseTag }} install.nsi
       - uses: actions/upload-artifact@v4
