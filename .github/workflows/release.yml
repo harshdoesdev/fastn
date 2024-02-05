@@ -40,17 +40,18 @@ jobs:
         with:
           name: windows_x64_latest
           path: result/bin/fastn.exe
-      - name: Install NSIS and EnVar Plugin
+      - name: Install NSIS & Plugins
         run: |
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends -y nsis nsis-doc nsis-pluginapi unzip
+          sudo apt update && sudo apt install -y nsis nsis-pluginapi
+          sudo chown -R $(whoami) /usr/share/nsis/Plugins/
+
           wget https://github.com/GsNSIS/EnVar/releases/download/v0.3.1/EnVar-Plugin.zip
           unzip EnVar-Plugin.zip -d EnVar-Plugin
-          sudo mv EnVar-Plugin/* /usr/share/nsis/Plugins/
+          sudo mv EnVar-Plugin/Plugins/* /usr/share/nsis/Plugins/
 
           wget https://nsis.sourceforge.io/mediawiki/images/3/3d/Unicode_V1.2.zip
           unzip Unicode_V1.2.zip -d Unicode_V1.2
-          sudo mv Unicode_V1.2/* /usr/share/nsis/Plugins/x86-unicode/
+          sudo mv Unicode_V1.2/Plugins/* /usr/share/nsis/Plugins/x86-unicode/
       - name: Create Installer
         run: makensis -V3 -DCURRENT_WD=${{ github.workspace }} -DVERSION=${{ github.event.inputs.releaseTag }} install.nsi
       - uses: actions/upload-artifact@v4
