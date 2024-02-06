@@ -219,9 +219,9 @@ async fn download_and_unpack_zip(
                 name: entry.name(),
             })?;
             dbg!(&path);
-            let path = path.to_str().unwrap();
+            let path = path.to_str().unwrap().replace('\\', "/");
             dbg!(&path);
-            let path_without_prefix = match path.split_once(std::path::MAIN_SEPARATOR) {
+            let path_without_prefix = match path.split_once('/') {
                 Some((_, path)) => path,
                 None => path,
             };
