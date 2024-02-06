@@ -219,11 +219,11 @@ async fn download_and_unpack_zip(
                 name: entry.name(),
             })?;
             dbg!(&path);
-            let path = path.to_str().unwrap().replace('\\', "/");
-            dbg!(&path);
-            let path_without_prefix = match path.split_once('/') {
+            let path_string = path.to_string_lossy().into_owned();
+            let path_normalized = path_string.replace('\\', "/");
+            let path_without_prefix = match path_normalized.split_once('/') {
                 Some((_, path)) => path,
-                None => path,
+                None => &path_normalized,
             };
             let output_path = &dependency_path.join(path_without_prefix);
             dbg!(&output_path);
