@@ -202,6 +202,8 @@ async fn download_and_unpack_zip(
             package: package_name,
         })?;
 
+    dbg!("IT CAME HERE");
+
     for i in 0..archive.len() {
         let mut entry = archive.by_index(i).context(ArchiveEntryReadSnafu {
             package: package_name,
@@ -216,12 +218,15 @@ async fn download_and_unpack_zip(
                 package: package_name,
                 name: entry.name(),
             })?;
+            dbg!(&path);
             let path = path.to_str().unwrap();
+            dbg!(&path);
             let path_without_prefix = match path.split_once(std::path::MAIN_SEPARATOR) {
                 Some((_, path)) => path,
                 None => path,
             };
             let output_path = &dependency_path.join(path_without_prefix);
+            dbg!(&output_path);
             ds.write_content(output_path, buffer)
                 .await
                 .context(WriteArchiveContentSnafu {
