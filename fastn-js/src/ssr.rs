@@ -4,7 +4,7 @@ pub fn run_test(js: &str) -> Vec<bool> {
         .unwrap();
     context.runtime()
         .set_max_stack_size(5242880);
-    context.with(|ctx| ctx.eval::<String, _>(js).unwrap())
+    context.with(|ctx| ctx.eval::<Vec<bool>, _>(js).unwrap())
 }
 
 pub fn ssr_str(js: &str) -> String {
